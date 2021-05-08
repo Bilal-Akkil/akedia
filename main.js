@@ -134,6 +134,13 @@ fileInput.addEventListener("change", (e) => {
 
 var imgDownloadUrl;
 
+
+
+// db.collection('things').add({ ...myData, createdAt: timestamp() })
+// // Query
+// db.collection('things').orderBy('createdAt').startAfter(today)
+
+
 function uploadPhoto() {
   console.log("hi");
   // Points to the root reference
@@ -150,6 +157,8 @@ function uploadPhoto() {
         imgDownloadUrl = url;
         console.log(url);
 
+        const timestamp = firebase.firestore.FieldValue.serverTimestamp;
+
         var postTXT = document.getElementById("UploadPostText").value;
         var firestorePosts = db.collection("posts");
         firestorePosts
@@ -157,6 +166,7 @@ function uploadPhoto() {
             userID: Guser.uid,
             img: imgDownloadUrl,
             text: postTXT,
+            createdAt: timestamp(),
           })
           .then(() => {
             console.log("Document successfully written!");
@@ -172,7 +182,9 @@ function uploadPhoto() {
 }
 
 function downloadPhoto() {
-  db.collection("posts")
+  //db.collection('posts').orderBy('createdAt', 'asc')
+
+  db.collection('posts').orderBy('createdAt', "asc")
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
@@ -181,7 +193,8 @@ function downloadPhoto() {
         //console.log(doc.id, " => ", doc.data());
 
         var un = doc.data().userID;
-        var poTxt = doc.data().text;
+        var postTxt = doc.data().text;
+        var PostDate = doc.data().createdAt.toDate().toDateString();
         var imgurl = doc.data().img;
 
         var docRef = db.collection("users").doc(un);
@@ -199,7 +212,7 @@ function downloadPhoto() {
               console.log(data.name);
               console.log(data);
 
-              createElem(imgurl, username, userprofpic, poTxt);
+              createElem(imgurl, username, PostDate, userprofpic, postTxt);
             } else {
               // doc.data() will be undefined in this case
               console.log("No such document!");
@@ -350,7 +363,7 @@ downloadPhoto();
 //
 //
 //
-function createElem(url, username, userprofpic, posttxt) {
+function createElem(url, username, postdate, userprofpic, posttxt) {
   if (userprofpic == undefined) {
     userprofpic =
       "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80";
@@ -360,6 +373,9 @@ function createElem(url, username, userprofpic, posttxt) {
   PostContainer.setAttribute("class", "PostContainer");
   PostContainer.setAttribute("id", "PostContainer");
 
+  var PostHeadCon = document.createElement("div");
+  PostHeadCon.setAttribute("id", "PostHeaderContainer");
+  PostHeadCon.setAttribute("class", "PostHeaderContainer");
   //
   //user info
   var UserInfo = document.createElement("div");
@@ -380,6 +396,13 @@ function createElem(url, username, userprofpic, posttxt) {
   <p>${username}</p>
   `;
 
+  var PostDate = document.createElement("div");
+  PostDate.setAttribute("id", "PostDate");
+  PostDate.setAttribute("class", "PostDate");
+  PostDate.innerHTML = `
+  <p>${postdate}</p>
+  `;
+
   //Post
   var Post = document.createElement("div");
   Post.setAttribute("id", "Post");
@@ -390,7 +413,10 @@ function createElem(url, username, userprofpic, posttxt) {
   `;
 
   //Post
-  PostContainer.appendChild(UserInfo);
+  PostContainer.appendChild(PostHeadCon);
+
+  PostHeadCon.appendChild(UserInfo);
+  PostHeadCon.appendChild(PostDate);
 
   UserInfo.appendChild(UserPic);
   UserInfo.appendChild(UserName);

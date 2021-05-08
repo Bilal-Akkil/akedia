@@ -1,0 +1,142 @@
+body {
+
+  background-color: #f6f7f9;
+
+}
+.PostsContainer {
+  width: 49%;
+  height: 100%;
+  float: left;
+}
+.PostContainer {
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  margin-bottom: 20px;
+
+  border-radius: 8px;
+
+  margin-top: 10px;
+  box-shadow: 0 2px 7px 2px rgb(60 64 67 / 30%);
+  transition: 0.4s;
+}
+.PostContainer:hover {
+  transform: scale(1.01, 1.01);
+}
+.UserInfo {
+  width: 50%;
+  margin-left: 10px;
+}
+.UserPic {
+  display: inline-block;
+  margin: auto;
+  margin-top: 10px;
+  border-radius: 50%;
+  background-size: 200% 200%;
+  animation: animated-gradient 2s linear infinite;
+}
+.UserPic img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.UserName {
+  display: inline-block;
+  vertical-align: top;
+  font-weight: bold;
+}
+
+.PostText {
+  font-size: 20px;
+}
+.PostImage {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.RightSideContainer {
+  position: fixed;
+  right: 0;
+  width: 30%;
+
+  margin-right: 5%;
+}
+
+.ProfileContainer {
+  background: rgb(45, 59, 72);
+
+  text-align: center;
+  border-radius: 25px;
+  padding-bottom: 25px;
+  padding-top: 25px;
+
+  box-shadow: 0 10px 10px rgba(80, 106, 129, 0.6);
+}
+.ProfilePicContainer img {
+  display: block;
+  width: 30%;
+  height: 30%;
+  border-radius: 50%;
+  margin: auto;
+  margin-top: 20px;
+}
+.ProfileNameContainer {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 600;
+  margin: 10px 0;
+  margin-bottom: 50px;
+}
+
+.UploadContainer {
+  background: #2c3a47;
+
+  width: 100%;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  height: auto;
+
+  border-radius: 10px;
+}
+.SelectBtn {
+  float: left;
+}
+.UploadBtn {
+  float: right;
+}
+.UploadPostText {
+  width: 100%;
+  border: 2px solid rgba(0, 0, 0, 0.432);
+  -webkit-box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1),
+    0 0 16px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
+  background: rgb(255, 255, 255);
+  margin: 0 0 10px 0;
+}
+
+.UploadContainer img {
+  width: 100%;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .PostContainer {
+    width: 80%;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .PostContainer {
+    width: 95%;
+    margin: 70px auto;
+    min-height: 350px;
+    height: auto;
+  }
+
+
+}
+

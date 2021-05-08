@@ -1,0 +1,109 @@
+.PostsContainer {
+  width: 49%;
+  height: 100%;
+  float: left;
+}
+.PostContainer {
+  border-radius: 10px;
+  background-color: rgb(172, 172, 172);
+  width: 100%;
+}
+.UserInfo {
+  width: 50%;
+}
+.UserPic {
+  display: inline-block;
+  margin: auto;
+  border-radius: 50%;
+  background-size: 200% 200%;
+  animation: animated-gradient 2s linear infinite;
+}
+.UserPic img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.UserName {
+  display: inline-block;
+  vertical-align: top;
+  font-weight: bold;
+}
+
+.PostText {
+  font-size: 20px;
+}
+.PostImage {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.RightSideContainer {
+  float: right;
+  width: 30%;
+
+  margin-right: 5%;
+}
+
+.ProfileContainer {
+  background: #2c3a47;
+
+  text-align: center;
+  border-radius: 25px;
+  padding-bottom: 25px;
+  padding-top: 25px;
+}
+.ProfilePicContainer img {
+  display: block;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: auto;
+  margin-top: 20px;
+}
+.ProfileNameContainer {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 600;
+  margin: 10px 0;
+  margin-bottom: 50px;
+}
+
+.UploadContainer {
+  background: #2c3a47;
+
+  width: 100%;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  height: auto;
+
+  border-radius: 10px;
+}
+.SelectBtn {
+  float: left;
+}
+.UploadBtn {
+  float: right;
+}
+.UploadPostText {
+  width: 90%;
+  border: 5px solid rgba(0, 0, 0, 0.432); 
+  -webkit-box-shadow: 
+    inset 0 0 8px  rgba(0,0,0,0.1),
+          0 0 16px rgba(0,0,0,0.1); 
+  -moz-box-shadow: 
+    inset 0 0 8px  rgba(0,0,0,0.1),
+          0 0 16px rgba(0,0,0,0.1); 
+  box-shadow: 
+    inset 0 0 8px  rgba(0,0,0,0.1),
+          0 0 16px rgba(0,0,0,0.1); 
+  padding: 15px;
+  background: rgb(255, 255, 255);
+  margin: 0 0 10px 0;
+}
+
+.UploadContainer img {
+  width: 100%;
+  border-radius: 15px;
+  margin-top: 10px;
+}

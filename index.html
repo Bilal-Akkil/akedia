@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.js"></script>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <title>Akedia</title>
+  </head>
+
+  <body>
+    <div id="profile-container">
+      <button id="google-login">Login with GOOGLE</button>
+      <button id="logout">Logout</button>
+      <div id="profile"></div>
+    </div>
+    <!-- POSTS CONTAINER -->
+    <div id="PostsContainer" class="PostsContainer"></div>
+    <!-- ////POSTS CONTAINER//// -->
+
+    <!-- RIGHT-SIDE CONTAINER -->
+    <div class="RightSideContainer">
+      <!-- PROFILE CONTAINER -->
+      <div id="ProfileContainer" class="ProfileContainer">
+        <div id="ProfilePicContainer" class="ProfilePicContainer">
+          <img id="ProfilePicture" src="" alt="Profile Picture" />
+        </div>
+        <div id="ProfileNameContainer" class="ProfileNameContainer"></div>
+        <textarea
+          name=""
+          placeholder="Input new name..."
+          id="newname"
+        ></textarea>
+        <button onClick="editProfile()">Edit</button>
+      </div>
+      <!-- ////PROFILE CONTAINER//// -->
+
+      <!-- UPLOAD CONTAINER -->
+      <div class="UploadContainer">
+        <div class="ButtonsContainer">
+          <input
+            type="file"
+            id="SelectBtn"
+            class="SelectBtn"
+            accept="image/*"
+          />
+          <button id="UploadBtn" class="UploadBtn" onclick="uploadPhoto()">
+            Upload
+          </button>
+        </div>
+        <br /><br />
+        <textarea
+          name=""
+          placeholder="Input text..."
+          cols="40"
+          rows="3"
+          id="UploadPostText"
+          class="UploadPostText"
+        ></textarea>
+
+        <img id="SelectedPhoto" src="" alt="Photo" />
+      </div>
+      <!-- ////UPLOAD CONTAINER//// -->
+    </div>
+    <!-- RIGHT-SIDE CONTAINER -->
+
+    <!-- PROFILE CONTAINER 
+    <div id="profile-container">
+      <button id="google-login">Login with GOOGLE</button>
+      <button id="logout">Logout</button>
+      <div id="profile"></div>
+    </div>
+
+    <div class="file-input">
+      <input type="file" id="file" class="file" accept="image/*" />
+      <label for="file">Select file</label>
+    </div>
+    <br />
+    <img id="img" src="" alt="Photo" class="image" />
+    <br />
+
+    <button onclick="uploadPhoto()" class="button upload-btn">Upload</button>
+
+    <div id="posts-container" class="postsContainer"></div>
+    -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-analytics.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-firestore.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      var firebaseConfig = {
+        apiKey: "AIzaSyA9p9r1zqc9ILLjgBk7MHKsR3icKSG558M",
+        authDomain: "akedia-2021.firebaseapp.com",
+        projectId: "akedia-2021",
+        storageBucket: "akedia-2021.appspot.com",
+        messagingSenderId: "489448463441",
+        appId: "1:489448463441:web:ab6d54e83ff1ed03516c70",
+        measurementId: "G-C74FT35LGT",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      firebase.analytics();
+    </script>
+    <script src="main.js"></script>
+  </body>
+</html>

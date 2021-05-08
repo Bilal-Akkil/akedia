@@ -134,12 +134,9 @@ fileInput.addEventListener("change", (e) => {
 
 var imgDownloadUrl;
 
-
-
 // db.collection('things').add({ ...myData, createdAt: timestamp() })
 // // Query
 // db.collection('things').orderBy('createdAt').startAfter(today)
-
 
 function uploadPhoto() {
   console.log("hi");
@@ -184,7 +181,8 @@ function uploadPhoto() {
 function downloadPhoto() {
   //db.collection('posts').orderBy('createdAt', 'asc')
 
-  db.collection('posts').orderBy('createdAt', "asc")
+  db.collection("posts")
+    .orderBy("createdAt", "asc")
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
@@ -395,7 +393,7 @@ function createElem(url, username, postdate, userprofpic, posttxt) {
   UserName.innerHTML = `
   <p>${username}</p>
   `;
-
+  //post date
   var PostDate = document.createElement("div");
   PostDate.setAttribute("id", "PostDate");
   PostDate.setAttribute("class", "PostDate");

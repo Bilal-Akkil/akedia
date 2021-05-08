@@ -182,7 +182,7 @@ function downloadPhoto() {
   //db.collection('posts').orderBy('createdAt', 'asc')
 
   db.collection("posts")
-    .orderBy("createdAt", "asc")
+    .orderBy("createdAt", "desc")
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {

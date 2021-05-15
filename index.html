@@ -16,61 +16,72 @@
   </head>
 
   <body>
-    <div id="profile-container">
-      <button id="google-login">Login with GOOGLE</button>
-      <button id="logout">Logout</button>
-      <div id="profile"></div>
-    </div>
-    <!-- POSTS CONTAINER -->
-    <div id="PostsContainer" class="PostsContainer"></div>
-    <!-- ////POSTS CONTAINER//// -->
-
-    <!-- RIGHT-SIDE CONTAINER -->
-    <div class="RightSideContainer">
-      <!-- PROFILE CONTAINER -->
-      <div id="ProfileContainer" class="ProfileContainer">
-        <div id="ProfilePicContainer" class="ProfilePicContainer">
-          <img id="ProfilePicture" src="" alt="Profile Picture" />
-        </div>
-        <div id="ProfileNameContainer" class="ProfileNameContainer"></div>
-        <textarea
-          name=""
-          placeholder="Input new name..."
-          id="newname"
-        ></textarea>
-        <button onClick="editProfile()">Edit</button>
+    <div class="overallContainer">
+      <div id="login-container">
+        <button id="google-login">Login with GOOGLE</button>
+        <button id="logout">Logout</button>
+        <div id="profile"></div>
       </div>
-      <!-- ////PROFILE CONTAINER//// -->
 
-      <!-- UPLOAD CONTAINER -->
-      <div class="UploadContainer">
-        <div class="ButtonsContainer">
-          <input
-            type="file"
-            id="SelectBtn"
-            class="SelectBtn"
-            accept="image/*"
-          />
-          <button id="UploadBtn" class="UploadBtn" onclick="uploadPhoto()">
-            Upload
-          </button>
+      <!-- TOP CONTAINER -->
+      <div class="TopContainer">
+        <!-- PROFILE CONTAINER -->
+
+        <div id="ProfileContainer" class="ProfileContainer">
+          <div class="ProfileContainerL">
+            <div id="ProfilePicContainer" class="ProfilePicContainer">
+              <img id="ProfilePicture" src="" alt="Profile Picture" />
+            </div>
+            <div id="ProfileNameContainer" class="ProfileNameContainer"></div>
+          </div>
+          <br />
+          <!-- EDIT CONTAINER -->
+          <div class="ProfileContainerR">
+            <textarea
+              name=""
+              placeholder="Input new name..."
+              id="newname"
+            ></textarea>
+            <button onClick="editProfile()">Edit</button>
+          </div>
+          <!-- ////EDIT CONTAINER//// -->
         </div>
-        <br /><br />
-        <textarea
-          name=""
-          placeholder="Input text..."
-          cols="40"
-          rows="3"
-          id="UploadPostText"
-          class="UploadPostText"
-        ></textarea>
+        <!-- ////PROFILE CONTAINER//// -->
 
-        <br />
-        <img id="SelectedPhoto" src="" alt="Photo" />
+        <!-- UPLOAD CONTAINER -->
+        <div class="UploadContainer">
+          <div class="ButtonsContainer">
+            <input
+              type="file"
+              id="SelectBtn"
+              class="SelectBtn"
+              accept="image/*"
+            />
+            <button id="UploadBtn" class="UploadBtn" onclick="uploadPhoto()">
+              Upload
+            </button>
+          </div>
+          <br /><br />
+          <textarea
+            name=""
+            placeholder="Input text..."
+            cols="40"
+            rows="3"
+            id="UploadPostText"
+            class="UploadPostText"
+          ></textarea>
+
+          <br />
+          <img id="SelectedPhoto" src="" alt="Photo" />
+        </div>
+        <!-- ////UPLOAD CONTAINER//// -->
       </div>
-      <!-- ////UPLOAD CONTAINER//// -->
+      <!-- ////TOP CONTAINER//// -->
+
+      <!-- POSTS CONTAINER -->
+      <div id="PostsContainer" class="PostsContainer"></div>
+      <!-- ////POSTS CONTAINER//// -->
     </div>
-    <!-- RIGHT-SIDE CONTAINER -->
 
     <!-- PROFILE CONTAINER 
 

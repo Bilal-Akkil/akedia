@@ -153,7 +153,7 @@ function uploadPhoto() {
       imagesRef.getDownloadURL().then(function (url) {
         imgDownloadUrl = url;
         console.log(url);
-
+        imgStoragePath = imagesRef._delegate._location.path_;
         const timestamp = firebase.firestore.FieldValue.serverTimestamp;
 
         var postTXT = document.getElementById("UploadPostText").value;
@@ -162,6 +162,7 @@ function uploadPhoto() {
           .add({
             userID: Guser.uid,
             img: imgDownloadUrl,
+            imgStoragePath: imgStoragePath,
             text: postTXT,
             createdAt: timestamp(),
           })
@@ -189,11 +190,13 @@ function downloadPhoto() {
         // doc.data() is never undefined for query doc snapshots
         //console.log("test1");
         //console.log(doc.id, " => ", doc.data());
-
         var un = doc.data().userID;
         var postTxt = doc.data().text;
         var PostDate = doc.data().createdAt.toDate().toDateString();
         var imgurl = doc.data().img;
+
+        var imgStoragePath = doc.data().imgStoragePath; //for deleting the img
+        var postid = doc.id; //post id for deleting the post
 
         var docRef = db.collection("users").doc(un);
         var username;
@@ -210,7 +213,16 @@ function downloadPhoto() {
               console.log(data.name);
               console.log(data);
 
-              createElem(imgurl, username, PostDate, userprofpic, postTxt);
+              createElem(
+                imgurl,
+                username,
+                PostDate,
+                userprofpic,
+                postTxt,
+                un,
+                postid, //post id for deleting the post
+                imgStoragePath //for deleting the img
+              );
             } else {
               // doc.data() will be undefined in this case
               console.log("No such document!");
@@ -221,137 +233,6 @@ function downloadPhoto() {
           });
       });
     });
-
-  // //var spaceRef = storageRef.child("images/" + file);
-  // var listRef = storageRef.child("images/");
-  // // Find all the prefixes and items.
-  // listRef
-  //   .listAll()
-  //   .then((res) => {
-  //     res.prefixes.forEach((folderRef) => {
-  //       // All the prefixes under listRef.
-  //       // You may call listAll() recursively on them.
-  //       console.log(folderRef);
-  //       console.log(folderRef._delegate._location.path_);
-  //       var curFolderRef = storageRef.child(
-  //         folderRef._delegate._location.path_
-  //       );
-
-  //       var userID = folderRef._delegate._location.path_;
-  //       var x = userID.substring(7);
-  //       console.log(x + "   HI");
-
-  //       var docRef = db.collection("users").doc(x);
-  //       var username;
-  //       var userprofpic;
-  //       docRef
-  //         .get()
-  //         .then((doc) => {
-  //           if (doc.exists) {
-  //             console.log("Document data:", doc.data());
-  //             var data = doc.data();
-  //             username = data.name;
-  //             userprofpic = data.ProfilePic;
-  //             console.log(data.name);
-  //             console.log(data);
-  //           } else {
-  //             // doc.data() will be undefined in this case
-  //             console.log("No such document!");
-  //           }
-  //         })
-  //         .catch((error) => {
-  //           console.log("Error getting document:", error);
-  //         });
-
-  //       curFolderRef
-  //         .listAll()
-  //         .then((resor) => {
-  //           resor.items.forEach((itemRef) => {
-  //             // All the items under listRef.
-  //             console.log(itemRef.name);
-  //             itemRef.getDownloadURL().then(function (url) {
-  //               console.log(url);
-  //               createElem(url, username, userprofpic);
-
-  //               //
-  //               //
-  //               //
-  //               // var PostContainer = document.createElement("div");
-  //               // PostContainer.setAttribute("class", "postContainer");
-  //               // PostContainer.setAttribute("id", "post-container");
-
-  //               // var userD = document.createElement("div");
-
-  //               // userD.innerHTML = `
-  //               // <img class="postProfilePic"></img>
-  //               // <h5>USER NAME</h5>
-  //               // `;
-
-  //               // var imgCon = document.createElement("div");
-  //               // imgCon.setAttribute("class", "imgContainer");
-
-  //               // var i = document.createElement("img");
-  //               // i.src = url;
-  //               // i.setAttribute("class", "image");
-
-  //               // PostContainer.appendChild(userD);
-  //               // PostContainer.appendChild(imgCon);
-  //               // imgCon.appendChild(i);
-
-  //               // document
-  //               //   .getElementById("posts-container")
-  //               //   .appendChild(PostContainer);
-  //               //
-  //               //
-  //               //
-  //             });
-  //           });
-  //         })
-  //         .catch((error) => {
-  //           // Uh-oh, an error occurred!
-  //         });
-  //     });
-  //     res.items.forEach((itemRef) => {
-  //       // All the items under listRef.
-  //       console.log(itemRef.name);
-  //       itemRef.getDownloadURL().then(function (url) {
-  //         console.log(url);
-  //         createElem(url, username, userprofpic);
-  //         //
-  //         //
-  //         //
-  //         // var PostContainer = document.createElement("div");
-  //         // PostContainer.setAttribute("class", "postContainer");
-  //         // PostContainer.setAttribute("id", "post-container");
-
-  //         // var userD = document.createElement("div");
-
-  //         // userD.innerHTML = `
-  //         //   <img class="postProfilePic"></img>
-  //         //   <h5>USER NAME</h5>
-  //         //   `;
-
-  //         // var imgCon = document.createElement("div");
-  //         // imgCon.setAttribute("class", "imgContainer");
-
-  //         // var i = document.createElement("img");
-  //         // i.src = url;
-  //         // i.setAttribute("class", "image");
-
-  //         // PostContainer.appendChild(userD);
-  //         // PostContainer.appendChild(imgCon);
-  //         // imgCon.appendChild(i);
-
-  //         // document.getElementById("posts-container").appendChild(PostContainer);
-  //         //
-  //         //
-  //         //
-  //       });
-  //     });
-  //   })
-  //   .catch((error) => {
-  //     // Uh-oh, an error occurred!
-  //   });
 }
 
 function downloadPost() {}
@@ -361,7 +242,16 @@ downloadPhoto();
 //
 //
 //
-function createElem(url, username, postdate, userprofpic, posttxt) {
+function createElem(
+  url,
+  username,
+  postdate,
+  userprofpic,
+  posttxt,
+  userid,
+  postid, //post id for deleting the post
+  imgStoragePath // for deleting the img
+) {
   if (userprofpic == undefined) {
     userprofpic =
       "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80";
@@ -409,6 +299,10 @@ function createElem(url, username, postdate, userprofpic, posttxt) {
   <p id="PostText" class="PostText">${posttxt}</p>
   <img src="${url}" alt="Photo" id="PostImage" class="PostImage" loading="lazy" />
   `;
+  var dBtn = document.createElement("div");
+  dBtn.innerHTML = `
+  <button id="DeletePostBtn" class="DeletePostBtn">DELETE POST</button>
+  `;
 
   //Post
   PostContainer.appendChild(PostHeadCon);
@@ -419,24 +313,17 @@ function createElem(url, username, postdate, userprofpic, posttxt) {
   UserInfo.appendChild(UserPic);
   UserInfo.appendChild(UserName);
 
+  if (userid == Guser.uid) {
+    //dBtn.setAttribute("onclick", "DeletePost(postid, imgStoragePath)");
+    dBtn.addEventListener("click", function () {
+      DeletePost(postid, imgStoragePath);
+    });
+    Post.appendChild(dBtn);
+  } else {
+    null;
+  }
+
   PostContainer.appendChild(Post);
-  // var userD = document.createElement("div");
-
-  // userD.innerHTML = `
-  //               <img class="postProfilePic"></img>
-  //               <h5>${username}</h5>
-  //               `;
-
-  // var imgCon = document.createElement("div");
-  // imgCon.setAttribute("class", "imgContainer");
-
-  // var i = document.createElement("img");
-  // i.src = url;
-  // i.setAttribute("class", "image");
-
-  // PostContainer.appendChild(userD);
-  // PostContainer.appendChild(imgCon);
-  // imgCon.appendChild(i);
 
   document.getElementById("PostsContainer").appendChild(PostContainer);
 }
@@ -472,5 +359,30 @@ function editProfile() {
     .catch(function (error) {
       // An error happened.
       console.log("An error happened." + error);
+    });
+}
+
+//deleting the post
+function DeletePost(postid, imgStoragePath) {
+  db.collection("posts")
+    .doc(postid)
+    .delete()
+    .then(() => {
+      console.log("Document successfully deleted!");
+      alert("Deleted successfuly!");
+    })
+    .catch((error) => {
+      console.error("Error removing document: ", error);
+      alert("Error removing document: ", error);
+    });
+  var imgpathref = storageRef.child(imgStoragePath);
+  imgpathref
+    .delete()
+    .then(() => {
+      // File deleted successfully
+      alert("Img successfully deleted");
+    })
+    .catch((error) => {
+      // Uh-oh, an error occurred!
     });
 }
